@@ -312,7 +312,7 @@
     // Konfigürasyon
     const CORRECT_PIN = "0112"; // 1 Aralık (01/12)
     const START_DATE = new Date("2025-12-01T00:00:00"); // 1 Aralık 2025
-    const PUZZLE_IMG = "foto.jpg"; // Yüklediğiniz resim
+    const PUZZLE_IMG = "foto.jpg"; // Puzzle fotoğrafı
 
     let currentPin = "";
 
@@ -393,7 +393,6 @@
             selectedPiece = index;
             children[index].classList.add('selected');
         } else {
-            // İki parçayı değiştir
             let temp = pieces[selectedPiece];
             pieces[selectedPiece] = pieces[index];
             pieces[index] = temp;
@@ -434,5 +433,5 @@
 </script>
 
 </body>
-                                      </html>
-                                      
+                </html>
+                

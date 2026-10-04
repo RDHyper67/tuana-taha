@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -15,500 +14,425 @@
         }
 
         body {
-            background-color: #fcf4f4;
+            background-color: #fcf4f6;
             color: #4a4a4a;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 0;
+            padding: 15px;
         }
 
         .container {
             width: 100%;
-            max-width: 430px;
-            background: #fff;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            position: relative;
-            min-height: 850px;
-        }
-
-        /* Pin/Şifre Ekranı */
-        #pin-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff0f3;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            max-width: 450px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(230, 180, 195, 0.3);
+            padding: 25px;
             text-align: center;
         }
 
-        .title-script {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: #d63384;
-            margin-bottom: 5px;
+        /* Giriş / Kilit Ekranı */
+        #login-screen {
+            display: block;
         }
 
-        .subtitle {
+        .lock-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #d66d85;
+            margin-bottom: 10px;
+        }
+
+        .lock-subtitle {
             font-size: 0.85rem;
-            color: #888;
+            color: #a0808a;
             margin-bottom: 25px;
         }
 
-        .pin-dots {
+        .pin-display {
             display: flex;
+            justify-content: center;
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .dot {
+        .pin-dot {
             width: 16px;
             height: 16px;
             border-radius: 50%;
-            border: 2px solid #d63384;
-            background: transparent;
+            border: 2px solid #d66d85;
             transition: all 0.2s;
         }
 
-        .dot.active {
-            background: #d63384;
+        .pin-dot.filled {
+            background-color: #d66d85;
         }
 
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            width: 80%;
             max-width: 280px;
+            margin: 0 auto;
         }
 
         .key {
-            aspect-ratio: 1;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             border: none;
-            background: #fff;
-            font-size: 1.3rem;
-            color: #4a4a4a;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background-color: #f8ebeb;
+            color: #d66d85;
+            font-size: 1.2rem;
+            font-weight: 600;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-self: center;
             transition: background 0.2s;
         }
 
         .key:active {
-            background: #ffe3e8;
+            background-color: #eec4ce;
         }
 
         /* Ana İçerik */
         #main-content {
             display: none;
-            padding: 25px 20px;
-            flex-direction: column;
-            gap: 35px;
-        }
-
-        .section-header {
-            text-align: center;
         }
 
         .section-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
-            color: #d63384;
-        }
-
-        .section-subtitle {
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 2px;
+            font-size: 2rem;
+            color: #d66d85;
+            margin: 25px 0 15px;
         }
 
         /* Puzzle */
-        .puzzle-grid {
+        .puzzle-instructions {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 12px;
+        }
+
+        #puzzle-board {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
             gap: 4px;
-            width: 100%;
-            aspect-ratio: 1;
-            background: #eee;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 20px;
+            border: 4px solid #f8ebeb;
             border-radius: 12px;
             overflow: hidden;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background-color: #eee;
         }
 
         .puzzle-piece {
             width: 100%;
             height: 100%;
-            background-size: 300% 300%;
+            background-size: 280px 280px;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: transform 0.1s;
         }
 
         .puzzle-piece.selected {
-            outline: 3px solid #d63384;
-            outline-offset: -3px;
+            outline: 3px solid #d66d85;
+            transform: scale(0.95);
         }
 
         /* Mektup */
-        .letter-card {
-            background: #fffcf8;
-            border: 1px solid #f3e5d8;
-            border-radius: 16px;
+        .letter-box {
+            background-color: #fff9fa;
+            border: 1px solid #f2d6dc;
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            position: relative;
-        }
-
-        .letter-content {
+            text-align: left;
             font-size: 0.9rem;
-            line-height: 1.7;
-            color: #555;
-            text-align: justify;
+            line-height: 1.6;
+            color: #5a5a5a;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 25px;
         }
 
-        /* Albüm */
+        /* Anı Defteri */
         .album-container {
             position: relative;
-            background: #fff;
-            border-radius: 16px;
-            padding: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            border: 1px solid #f0f0f0;
-        }
-
-        .album-slide {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .album-slide.active {
-            display: flex;
-        }
-
-        .album-img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 12px;
+            height: 220px;
+            margin-bottom: 25px;
         }
 
-        .album-controls {
+        .album-card {
+            display: none;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .album-card.active {
+            display: block;
+        }
+
+        .album-card img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+        }
+
+        .album-card p {
+            font-size: 0.8rem;
+            padding: 8px;
+            background: #fff;
+            color: #777;
+        }
+
+        .album-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 10px;
         }
 
-        .nav-btn {
-            background: #fff0f3;
-            color: #d63384;
+        .album-btn {
+            background: #f8ebeb;
             border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
+            color: #d66d85;
+            padding: 6px 15px;
+            border-radius: 15px;
             cursor: pointer;
-            font-weight: 600;
+            font-size: 0.8rem;
         }
 
-        /* Zaman Sayacı */
-        .counter-grid {
+        /* Sayaç */
+        .timer-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 10px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .counter-box {
-            background: #fff0f3;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
+        .time-box {
+            background: #f8ebeb;
+            border-radius: 10px;
+            padding: 10px 5px;
         }
 
-        .counter-value {
-            font-size: 1.8rem;
+        .time-box .num {
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #d63384;
+            color: #d66d85;
         }
 
-        .counter-label {
-            font-size: 0.75rem;
-            color: #666;
+        .time-box .label {
+            font-size: 0.65rem;
+            color: #a0808a;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Yüzen Kalpler */
-        .heart {
-            position: absolute;
-            color: #ff8fa3;
-            font-size: 1rem;
-            animation: float 4s ease-in infinite;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) scale(0.8); opacity: 1; }
-            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- 1. Şifreli Giriş Ekranı -->
-        <div id="pin-screen">
-            <h1 class="title-script">Tuana ♥ Taha</h1>
-            <p class="subtitle">Tanışma tarihimizi gir (GGAA)</p>
-            
-            <div class="pin-dots">
-                <div class="dot" id="dot-0"></div>
-                <div class="dot" id="dot-1"></div>
-                <div class="dot" id="dot-2"></div>
-                <div class="dot" id="dot-3"></div>
-            </div>
-
-            <div class="keypad">
-                <button class="key" onclick="pressKey('1')">1</button>
-                <button class="key" onclick="pressKey('2')">2</button>
-                <button class="key" onclick="pressKey('3')">3</button>
-                <button class="key" onclick="pressKey('4')">4</button>
-                <button class="key" onclick="pressKey('5')">5</button>
-                <button class="key" onclick="pressKey('6')">6</button>
-                <button class="key" onclick="pressKey('7')">7</button>
-                <button class="key" onclick="pressKey('8')">8</button>
-                <button class="key" onclick="pressKey('9')">9</button>
-                <button class="key" onclick="clearPin()">C</button>
-                <button class="key" onclick="pressKey('0')">0</button>
-                <button class="key" onclick="deleteKey()">←</button>
-            </div>
+<div class="container">
+    <!-- Kilit Ekranı -->
+    <div id="login-screen">
+        <h1 class="lock-title">Tuana & Taha</h1>
+        <p class="lock-subtitle">Sadece senin için hazırlandı ✨<br><small>(Şifre: Tanışma Tarihimiz)</small></p>
+        
+        <div class="pin-display">
+            <div class="pin-dot" id="dot-0"></div>
+            <div class="pin-dot" id="dot-1"></div>
+            <div class="pin-dot" id="dot-2"></div>
+            <div class="pin-dot" id="dot-3"></div>
         </div>
 
-        <!-- 2. Ana İçerik -->
-        <div id="main-content">
-            
-            <!-- Yapboz Oyunu -->
-            <div>
-                <div class="section-header">
-                    <h2 class="section-title">Fotoğrafımızı Tamamla</h2>
-                    <p class="section-subtitle">İki kareye dokunarak yerlerini değiştir</p>
-                </div>
-                <div style="margin-top: 15px;">
-                    <div class="puzzle-grid" id="puzzle"></div>
-                </div>
-            </div>
-
-            <!-- Mektup -->
-            <div>
-                <div class="section-header">
-                    <h2 class="section-title">Kalbimden Bir Mektup</h2>
-                </div>
-                <div style="margin-top: 15px;">
-                    <div class="letter-card">
-                        <p class="letter-content">
-                            Aramızda geçen onca şeye, yaşadığımız kırgınlıklara, birbirimizi üzdüğümüz ve belki de bazen birbirimizi anlamakta zorlandığımız zamanlara rağmen içimde sana karşı değişmeyen bir şey var: seni ne kadar çok sevdiğim. Belki her zaman doğru kelimeleri bulamadım, belki sevgimi sana olması gerektiği gibi gösteremedim ama içimdeki yerin hiçbir zaman sıradan olmadı. Seninle yaşadığım güzel anılar kadar, zor zamanlarımız da benim için değerli çünkü hepsi bizi ve aramızdaki bağı oluşturdu.<br><br>
-                            Bazen kızdım, bazen kırıldım, bazen ne yapacağımı bilemedim ama bütün bunların arasında seni kaybetmek istemediğimi hep bildim. Çünkü sen benim için sadece hayatımda olan bir insan değilsin; güldüğümde aklıma gelen, bir şey olduğunda anlatmak istediğim, yokluğunu hissettiğim ve geleceğimi düşünürken içinde görmek istediğim kişisin.<br><br>
-                            Aramızda ne yaşanmış olursa olsun, sana olan sevgimin bunların hiçbirinden daha küçük olmadığını bilmeni istiyorum. Belki geçmişi değiştiremeyiz ama ben hâlâ seni seviyorum ve içimde sana dair güzel olan ne varsa korumaya devam ediyorum. Eğer bir gün bu mektubu okurken aklına bizim yaşadığımız her şey gelirse, en azından şunu bil: Ben seni gerçekten, bütün kusurlarımızla ve yaşadığımız her şeye rağmen sevdim.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Anı Defteri / Albüm -->
-            <div>
-                <div class="section-header">
-                    <h2 class="section-title">Anı Defterimiz</h2>
-                </div>
-                <div style="margin-top: 15px;">
-                    <div class="album-container">
-                        <div class="album-slide active">
-                            <img src="https://picsum.photos/400/300?random=1" class="album-img" alt="Anı 1">
-                            <p style="font-size:0.85rem; color:#666;">Birlikte ilk günlerimiz...</p>
-                        </div>
-                        <div class="album-slide">
-                            <img src="https://picsum.photos/400/300?random=2" class="album-img" alt="Anı 2">
-                            <p style="font-size:0.85rem; color:#666;">En tatlı gülüşün ♥</p>
-                        </div>
-                        <div class="album-slide">
-                            <img src="https://picsum.photos/400/300?random=3" class="album-img" alt="Anı 3">
-                            <p style="font-size:0.85rem; color:#666;">Unutulmaz bir anı...</p>
-                        </div>
-                        <div class="album-controls">
-                            <button class="nav-btn" onclick="changeSlide(-1)">❮ Önceki</button>
-                            <span id="slide-num" style="font-size:0.8rem; color:#aaa;">1 / 3</span>
-                            <button class="nav-btn" onclick="changeSlide(1)">Sonraki ❯</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Zaman Sayacı -->
-            <div>
-                <div class="section-header">
-                    <h2 class="section-title">Seninle Geçen Her Saniye</h2>
-                </div>
-                <div class="counter-grid">
-                    <div class="counter-box">
-                        <div class="counter-value" id="days">0</div>
-                        <div class="counter-label">Gün</div>
-                    </div>
-                    <div class="counter-box">
-                        <div class="counter-value" id="hours">0</div>
-                        <div class="counter-label">Saat</div>
-                    </div>
-                    <div class="counter-box">
-                        <div class="counter-value" id="minutes">0</div>
-                        <div class="counter-label">Dakika</div>
-                    </div>
-                    <div class="counter-box">
-                        <div class="counter-value" id="seconds">0</div>
-                        <div class="counter-label">Saniye</div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="keypad">
+            <button class="key" onclick="pressKey('1')">1</button>
+            <button class="key" onclick="pressKey('2')">2</button>
+            <button class="key" onclick="pressKey('3')">3</button>
+            <button class="key" onclick="pressKey('4')">4</button>
+            <button class="key" onclick="pressKey('5')">5</button>
+            <button class="key" onclick="pressKey('6')">6</button>
+            <button class="key" onclick="pressKey('7')">7</button>
+            <button class="key" onclick="pressKey('8')">8</button>
+            <button class="key" onclick="pressKey('9')">9</button>
+            <button class="key" onclick="clearPin()">C</button>
+            <button class="key" onclick="pressKey('0')">0</button>
+            <button class="key" onclick="deleteKey()">←</button>
         </div>
     </div>
 
-    <script>
-        // Şifre Mantığı (1 Aralık = 0112)
-        const CORRECT_PIN = "0112";
-        let currentPin = "";
+    <!-- Ana İçerik -->
+    <div id="main-content">
+        <h2 class="section-title">Fotoğrafımızı Tamamla 🧩</h2>
+        <p class="puzzle-instructions">İki kareye dokunarak yerlerini değiştirin</p>
+        <div id="puzzle-board"></div>
 
-        function pressKey(num) {
-            if (currentPin.length < 4) {
-                currentPin += num;
-                updateDots();
-                if (currentPin.length === 4) {
-                    setTimeout(checkPin, 200);
-                }
+        <h2 class="section-title">Kalbimden Bir Mektup 💌</h2>
+        <div class="letter-box">
+            Aramızda geçen onca şeye, yaşadığımız kırgınlıklara, birbirimizi üzdüğümüz ve belki de bazen birbirimizi anlamakta zorlandığımız zamanlara rağmen içimde sana karşı değişmeyen bir şey var: seni ne kadar çok sevdiğim. Belki her zaman doğru kelimeleri bulamadım, belki sevgimi sana olması gerektiği gibi gösteremedim ama içimdeki yerin hiçbir zaman sıradan olmadı. Seninle yaşadığım güzel anılar kadar, zor zamanlarımız da benim için değerli çünkü hepsi bizi ve aramızdaki bağı oluşturdu. Bazen kızdım, bazen kırıldım, bazen ne yapacağımı bilemedim ama bütün bunların arasında seni kaybetmek istemediğimi hep bildim. Çünkü sen benim için sadece hayatımda olan bir insan değilsin; güldüğümde aklıma gelen, bir şey olduğunda anlatmak istediğim, yokluğunu hissettiğim ve geleceğimi düşünürken içinde görmek istediğim kişisin. Aramızda ne yaşanmış olursa olsun, sana olan sevgimin bunların hiçbirinden daha küçük olmadığını bilmeni istiyorum. Belki geçmişi değiştiremeyiz ama ben hâlâ seni seviyorum ve içimde sana dair güzel olan ne varsa korumaya devam ediyorum. Eğer bir gün bu mektubu okurken aklına bizim yaşadığımız her şey gelirse, en azından şunu bil: Ben seni gerçekten, bütün kusurlarımızla ve yaşadığımız her şeye rağmen sevdim.
+        </div>
+
+        <h2 class="section-title">Anı Defterimiz 📸</h2>
+        <div class="album-container">
+            <div class="album-card active">
+                <img src="foto.jpg" alt="Anı 1">
+                <p>Birlikte en güzel anlarımızdan...</p>
+            </div>
+            <div class="album-card">
+                <img src="foto.jpg" alt="Anı 2">
+                <p>Gülüşün her şeye değer ♥</p>
+            </div>
+            <div class="album-card">
+                <img src="foto.jpg" alt="Anı 3">
+                <p>Daima birlikte...</p>
+            </div>
+            <div class="album-nav">
+                <button class="album-btn" onclick="changeSlide(-1)">❮ Önceki</button>
+                <span id="slide-num" style="font-size:0.8rem; color:#888;">1 / 3</span>
+                <button class="album-btn" onclick="changeSlide(1)">Sonraki ❯</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Seninle Geçen Her Saniye ⏳</h2>
+        <div class="timer-grid">
+            <div class="time-box"><div class="num" id="days">0</div><div class="label">Gün</div></div>
+            <div class="time-box"><div class="num" id="hours">0</div><div class="label">Saat</div></div>
+            <div class="time-box"><div class="num" id="minutes">0</div><div class="label">Dakika</div></div>
+            <div class="time-box"><div class="num" id="seconds">0</div><div class="label">Saniye</div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Konfigürasyon
+    const CORRECT_PIN = "0112"; // 1 Aralık (01/12)
+    const START_DATE = new Date("2025-12-01T00:00:00"); // 1 Aralık 2025
+    const PUZZLE_IMG = "foto.jpg"; // Yüklediğiniz resim
+
+    let currentPin = "";
+
+    function pressKey(num) {
+        if (currentPin.length < 4) {
+            currentPin += num;
+            updateDots();
+            if (currentPin.length === 4) {
+                setTimeout(checkPin, 200);
             }
         }
+    }
 
-        function deleteKey() {
-            currentPin = currentPin.slice(0, -1);
-            updateDots();
-        }
+    function deleteKey() {
+        currentPin = currentPin.slice(0, -1);
+        updateDots();
+    }
 
-        function clearPin() {
-            currentPin = "";
-            updateDots();
-        }
+    function clearPin() {
+        currentPin = "";
+        updateDots();
+    }
 
-        function updateDots() {
-            for (let i = 0; i < 4; i++) {
-                const dot = document.getElementById(`dot-${i}`);
-                if (i < currentPin.length) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            }
-        }
-
-        function checkPin() {
-            if (currentPin === CORRECT_PIN) {
-                document.getElementById('pin-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'flex';
-                initPuzzle();
-                startCounter();
+    function updateDots() {
+        for (let i = 0; i < 4; i++) {
+            const dot = document.getElementById(`dot-${i}`);
+            if (i < currentPin.length) {
+                dot.classList.add('filled');
             } else {
-                alert("Hatalı şifre! (İpucu: Tanışma tarihi - GünAy formatında)");
-                clearPin();
+                dot.classList.remove('filled');
             }
         }
+    }
 
-        // Puzzle Mantığı
-        const puzzleImg = "https://picsum.photos/300/300?random=10";
-        let pieces = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-        let selectedIndex = null;
+    function checkPin() {
+        if (currentPin === CORRECT_PIN) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            initPuzzle();
+            startTimer();
+        } else {
+            alert('Yanlış şifre! (İpucu: 0112)');
+            clearPin();
+        }
+    }
 
-        function initPuzzle() {
-            // Karıştır
-            pieces.sort(() => Math.random() - 0.5);
+    // Puzzle Mantığı
+    let pieces = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    let selectedPiece = null;
+
+    function initPuzzle() {
+        pieces.sort(() => Math.random() - 0.5);
+        renderPuzzle();
+    }
+
+    function renderPuzzle() {
+        const board = document.getElementById('puzzle-board');
+        board.innerHTML = '';
+        pieces.forEach((pieceIdx, currentPos) => {
+            const div = document.createElement('div');
+            div.className = 'puzzle-piece';
+            div.style.backgroundImage = `url('${PUZZLE_IMG}')`;
+            
+            const x = (pieceIdx % 3) * 100 / 2;
+            const y = Math.floor(pieceIdx / 3) * 100 / 2;
+            div.style.backgroundPosition = `${x}% ${y}%`;
+
+            div.onclick = () => onPieceClick(currentPos);
+            board.appendChild(div);
+        });
+    }
+
+    function onPieceClick(index) {
+        const board = document.getElementById('puzzle-board');
+        const children = board.children;
+
+        if (selectedPiece === null) {
+            selectedPiece = index;
+            children[index].classList.add('selected');
+        } else {
+            // İki parçayı değiştir
+            let temp = pieces[selectedPiece];
+            pieces[selectedPiece] = pieces[index];
+            pieces[index] = temp;
+
+            selectedPiece = null;
             renderPuzzle();
         }
+    }
 
-        function renderPuzzle() {
-            const container = document.getElementById('puzzle');
-            container.innerHTML = '';
-            pieces.forEach((piecePos, index) => {
-                const piece = document.createElement('div');
-                piece.className = 'puzzle-piece';
-                if (selectedIndex === index) piece.classList.add('selected');
-                
-                // Arka plan pozisyonu hesaplama
-                const x = (piecePos % 3) * 50;
-                const y = Math.floor(piecePos / 3) * 50;
-                piece.style.backgroundImage = `url(${puzzleImg})`;
-                piece.style.backgroundPosition = `${x}% ${y}%`;
-                
-                piece.onclick = () => onPieceClick(index);
-                container.appendChild(piece);
-            });
-        }
+    // Albüm Mantığı
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.album-card');
 
-        function onPieceClick(index) {
-            if (selectedIndex === null) {
-                selectedIndex = index;
-            } else {
-                // Yer değiştir
-                let temp = pieces[selectedIndex];
-                pieces[selectedIndex] = pieces[index];
-                pieces[index] = temp;
-                selectedIndex = null;
-            }
-            renderPuzzle();
-        }
+    function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        document.getElementById('slide-num').innerText = `${currentSlide + 1} / ${slides.length}`;
+    }
 
-        // Albüm Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.album-slide');
+    // Sayaç Mantığı
+    function startTimer() {
+        setInterval(() => {
+            const now = new Date();
+            const diff = now - START_DATE;
 
-        function changeSlide(direction) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-            document.getElementById('slide-num').innerText = `${currentSlide + 1} / ${slides.length}`;
-        }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
 
-        // Canlı İlişki Sayacı (1 Aralık Başlangıç Kabul Edildi)
-        function startCounter() {
-            // Örnek olarak geçen yılın 1 Aralık tarihi ayarlanmıştır
-            const startDate = new Date('2023-12-01T00:00:00');
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }, 1000);
+    }
+</script>
 
-            setInterval(() => {
-                const now = new Date();
-                const diff = now - startDate;
-
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                const minutes = Math.floor((diff / 1000 / 60) % 60);
-                const seconds = Math.floor((diff / 1000) % 60);
-
-                document.getElementById('days').innerText = days;
-                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
-            }, 1000);
-        }
-    </script>
-                  </body>
-</html>
-```
+</body>
+                                      </html>
+                                      
